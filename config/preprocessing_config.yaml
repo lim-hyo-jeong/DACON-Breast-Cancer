@@ -1,0 +1,39 @@
+task: preprocessing
+seed: 2022
+
+image:
+  crop_save_dir: imgs_crop
+  tile_save_dir: tiles
+  tile_size_factor: 15
+  n_tiles: 16
+  visualize: False
+
+tabular:
+  n_folds: 5
+  seed: 2022
+  encode_cols: ["Subtype"]
+  scaling_cols:
+    [
+      "나이",
+      "진단명",
+      "암의 위치",
+      "암의 개수",
+      "암의 장경",
+      "NG",
+      "HG",
+      "HG_score_1",
+      "HG_score_2",
+      "HG_score_3",
+      "DCIS_or_LCIS_여부",
+      "DCIS_or_LCIS_type",
+      "T_category",
+      "ER",
+      "ER_Allred_score",
+      "PR",
+      "PR_Allred_score",
+      "KI-67_LI_percent",
+      "HER2",
+      "BRCA_mutation",
+      "수술연도",
+      "Subtype",
+    ]

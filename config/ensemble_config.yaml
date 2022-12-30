@@ -1,0 +1,8 @@
+task: ensemble
+seed: 2022
+target: N_category
+
+dirs:
+  convnet_tabular: densenetblur121d_image1_1024_tabular
+  mil: swintinypatch4window7_mil16_224
+  xgb: xgboost_tabular

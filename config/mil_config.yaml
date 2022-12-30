@@ -1,0 +1,37 @@
+task: mil_classification
+seed: 2022
+n_folds: 5
+n_classes: 1
+
+model_params:
+  backbone_name: swin_tiny_patch4_window7_224
+  n_instances: 16
+  backbone_out_dims: 512
+  model_save_dir: swintinypatch4window7_mil16_224
+
+training_params:
+  target: N_category
+  epochs: 35
+  batch_size: 4
+  num_workers: 4
+  loss: BCEWithLogitsLoss
+  optimizer: AdamW
+  lr: 0.00001
+  scheduler: ReduceLROnPlateau
+  scheduler_params:
+    factor: 0.5
+    patience: 1
+    min_lr: 0.0000005
+  monitor: loss
+  early_stopping_rounds: 4
+  device: cuda
+
+inference_params:
+  batch_size: 8
+  num_workers: 4
+  device: cuda
+
+transform_params:
+  image_size: 224
+  normalize_mean: [0.8959, 0.8123, 0.8792]
+  normalize_std: [0.1211, 0.2004, 0.1296]

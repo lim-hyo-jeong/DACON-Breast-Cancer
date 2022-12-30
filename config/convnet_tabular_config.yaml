@@ -1,0 +1,63 @@
+task: convnet_tabular_classification
+seed: 2022
+n_folds: 5
+n_classes: 1
+
+model_params:
+  backbone_name: densenetblur121d
+  backbone_out_dims: 512
+  tabular_out_dims: 512
+  model_save_dir: densenetblur121d_image1_1024_tabular
+
+training_params:
+  target: N_category
+  epochs: 35
+  batch_size: 16
+  num_workers: 4
+  loss: BCEWithLogitsLoss
+  optimizer: AdamW
+  lr: 0.0001
+  scheduler: ReduceLROnPlateau
+  scheduler_params:
+    factor: 0.5
+    patience: 1
+    min_lr: 0.000001
+  monitor: loss
+  early_stopping_rounds: 4
+  device: cuda
+
+inference_params:
+  batch_size: 32
+  num_workers: 4
+  device: cuda
+
+transform_params:
+  image_size: 1024
+  normalize_mean: [0.9672, 0.9403, 0.9614]
+  normalize_std: [0.0813, 0.1396, 0.0905]
+
+tabular_features:
+  [
+    "나이",
+    "진단명",
+    "암의 위치",
+    "암의 개수",
+    "암의 장경",
+    "NG",
+    "HG",
+    "HG_score_1",
+    "HG_score_2",
+    "HG_score_3",
+    "DCIS_or_LCIS_여부",
+    "DCIS_or_LCIS_type",
+    "T_category",
+    "ER",
+    "ER_Allred_score",
+    "PR",
+    "PR_Allred_score",
+    "KI-67_LI_percent",
+    "HER2",
+    "BRCA_mutation",
+    "수술연도",
+    "Subtype",
+  ]

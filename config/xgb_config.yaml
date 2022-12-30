@@ -1,0 +1,54 @@
+task: xgb_classification
+seed: 2022
+n_folds: 5
+n_classes: 1
+
+model_params:
+  model_name: xgboost
+  model_save_dir: xgboost_tabular
+
+training_params:
+  target: N_category
+  best_params:
+    n_estimators: 10000
+    learning_rate: 0.02
+    subsample: 1.0
+    colsample_bytree: 0.6
+    gamma: 0.2103436350297136
+    reg_lambda: 0.21242879878212467
+    reg_alpha: 6.038789883743567
+    max_depth: 13
+    min_child_weight: 3
+    tree_method: gpu_hist
+  fit_params:
+    early_stopping_rounds: 100
+    eval_metric: logloss
+    verbose: 100
+
+inference_params:
+
+tabular_features:
+  [
+    "나이",
+    "진단명",
+    "암의 위치",
+    "암의 개수",
+    "암의 장경",
+    "NG",
+    "HG",
+    "HG_score_1",
+    "HG_score_2",
+    "HG_score_3",
+    "DCIS_or_LCIS_여부",
+    "DCIS_or_LCIS_type",
+    "T_category",
+    "ER",
+    "ER_Allred_score",
+    "PR",
+    "PR_Allred_score",
+    "KI-67_LI_percent",
+    "HER2",
+    "BRCA_mutation",
+    "수술연도",
+    "Subtype",
+  ]
