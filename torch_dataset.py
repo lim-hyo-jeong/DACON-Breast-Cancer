@@ -28,7 +28,6 @@ class BCDataset(Dataset):
             image = self.transforms(image=image)['image']
         image = torch.as_tensor(image, dtype=torch.float)
 
-        # tabular_feature
         tabular = self.tabulars[idx, :]
         tabular = torch.as_tensor(tabular, dtype=torch.float)
 
